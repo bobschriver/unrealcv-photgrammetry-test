@@ -3,12 +3,12 @@ from unrealcv import client
 # X runs east-west
 # Y runs north-south
 
-ROOM_LENGTH = 750 #500 to -250
+ROOM_LENGTH = 600 #500 to -250
 ROOM_WIDTH = 300 #-150 to 150
 ROOM_HEIGHT = 0.0
 
 STARTING_X = -150.0
-STARTING_Y = 500.0
+STARTING_Y = 350.0
 STARTING_Z = 200.0
 
 X_TRANSLATION = 50
@@ -42,7 +42,7 @@ else:
 		for y_offset in range(starting_y_range, ending_y_range, translation_y_range):
 			y_location = STARTING_Y + (-1 * y_offset)
 			
-			cmd = 'vset /camera/0/moveto %.1f %.1f %.1f' % (x_location, y_location, z_location)
+			cmd = 'vset /camera/0/location %.1f %.1f %.1f' % (x_location, y_location, z_location)
 			response = client.request(cmd)
 			
 			cmd = 'vset /camera/0/rotation %.1f %.1f %.1f' % (270, pitch, yaw)
@@ -53,5 +53,9 @@ else:
 			
 			cmd = 'vset /camera/0/rotation %.1f %.1f %.1f' % (300, pitch, yaw)
 			response = client.request(cmd)
+			
+			response = client.request('vget /camera/0/lit')
+			print response
+			
 
   
